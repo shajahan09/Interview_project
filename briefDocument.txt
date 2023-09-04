@@ -1,0 +1,30 @@
+1. Create a new Android project in Android Studio if you haven't already.
+
+2. Add the necessary permissions to your AndroidManifest.xml file:
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+Make sure to request these permissions at runtime if your app targets Android 6.0 (API level 23) or higher.
+
+3.Create a new BroadcastReceiver class to handle incoming SMS messages.
+ 	Create a new Java class, for example, SMSReceiver.java:
+4.Create a background service that starts automatically when the app is installed or the device boots up. 
+	Create a new Java class, for example, SMSService.java:
+5. Note :
+ 	If you want the app to receive and process SMS messages even when it's closed, 
+	you can't rely solely on a BroadcastReceiver and a background service because
+ 	Android places limitations on background processing for security and battery life reasons. 
+	Starting from Android 8.0 (API level 26), background services are restricted. 
+
+	**To receive SMS messages reliably when your app is closed, you should use a combination of two techniques:
+	1. Foreground Service: make sure add (<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />)AndroidManifest.xml
+	2. BroadcastReceiver:
+6.configure Service: in AndroidManifest.xml 
+ 	<service android:name="com.shajahan.smsReceive.Service.SmsService" 
+	android:enabled="true"/>
+7. Request SMS permissions at Run Time
+8. Start the SmsService: startService(new Intent(this, SmsService.class));
+
+
+
+-------------------------------------------------Thank you---------------------------------------------------
